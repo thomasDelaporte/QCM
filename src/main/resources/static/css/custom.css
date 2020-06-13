@@ -1,0 +1,26 @@
+html {
+  	height: 100%;
+}
+body {
+	position: relative;
+  	min-height: 100%;
+  	margin: 0;
+  	padding: 0;
+}
+
+footer {
+	position: absolute; bottom: 0;  left: 0; right: 0
+}
+
+
+.button-1:hover {
+  background-color: #940f33!important; /* w3-metro-dark-red en plus foncé */
+}
+
+.taskitem:hover {
+
+  cursor: pointer;
+  background-color: #f44336 !important; /* red from theme */
+  opacity: 0.7;
+  color: white;
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todolist Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/libs/w3school/w3.css">
+    <link rel="stylesheet" href="css/libs/w3school/w3-theme-red.css">
+    <link rel="stylesheet" href="css/libs/font-awesome/css/all.min.css">
+
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="w3-container w3-theme w3-padding" id="myHeader">
+      <div class="w3-center">
+        <h1 class="w3-xxxlarge">
+          <i class="fa fa-list w3-margin-bottom w3-text-white" style="font-size:50px"></i>
+          &nbsp;
+          Liste de tâches
+        </h1>   
+      </div>
+    </header>
+
+    <!-- Modal -->
+    <script>
+      function onclickOK(){
+          const title = document.getElementById("task-title").value;
+          addTask(title);
+          document.querySelector(".w3-modal").style.display="none";
+      }
+    </script>
+    <div id="modal-create-task" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-top">
+          <header class="w3-container w3-theme"> 
+
+            <span onclick='document.querySelector(".w3-modal").style.display="none";' class="w3-btn w3-display-topright w3-theme"><i class="far fa-window-close" style="font-size:30px"></i></span>
+            <h4>Ajouter une tache à la liste...</h4>
+          </header>
+          <div class="w3-padding">
+           
+            <form class="w3-container">
+              <div class="w3-section">
+                <label>Nom de la tache</label>
+                <input id="task-title" class="w3-input" type="text" required>
+              </div>
+              <div class="w3-section">
+                <label>Description</label>
+                <input class="w3-input" type="text">            
+              </div>         
+            </form>
+
+
+          </div>
+          <div class="w3-container">
+            <div class="w3-section">
+             <a class="w3-button w3-light-grey" onclick='document.querySelector(".w3-modal").style.display="none";'>Annuler &nbsp;</a>
+             <a class="w3-right w3-btn w3-theme" id="ok-button" onclick="onclickOK()">Créer &nbsp;<i class="fa fa-paper-plane"></i></a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="w3-container">
+
+      <br/>
+
+      <h2 class="w3-center">Aujourd'hui</h2>
+
+      <div class="w3-row-padding">
+
+        <div class="w3-third">&nbsp;</div>
+
+        <div class="w3-third w3-card-4 w3-container w3-border ">
+          <ul id="task-list" class="w3-ul w3-hoverable"> 
+
+          </ul>
+        </div>
+
+      </div>
+
+       <!--  Add button -->
+        <div class="w3-padding-32 w3-center">
+          <a class="w3-btn w3-circle w3-large w3-theme button-1" onclick="document.getElementById('modal-create-task').style.display='block'"><i class="fa fa-plus"></i></a>
+          <!-- <button class="w3-btn w3-xlarge w3-theme button-1" onclick="document.getElementById('modal-create-task').style.display='block'" style="font-weight:900;">Add a task</button> -->
+        </div>
+
+
+    <!-- Footer -->
+    <footer class="w3-container w3-theme-dark">
+      <div class="w3-center">
+        <h3>Réalisé par JCD</h3>
+        <p>Dernière mise à jour : juin 2020</p>
+      </div>
+
+      <!-- Go To Top -->
+      <!-- <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+        <span class="w3-text w3-theme w3-padding">Go To Top</span>&nbsp;   
+        <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+        <i class="fa fa-chevron-circle-up"></i></span></a>
+      </div> -->
+    </footer>
+
+	
+    <!-- Javascript -->
+    <script type="text/javascript" src="./js/TodoTask.js"></script>
+    
+    <script>
+
+      initData();
+
+      function initData() {
+    	  
+    	  loadTaskListFromBackend();
+//         addTask('Tache 1');
+//         addTask('Tache 2');
+      }
+
+      function addTask(title) {
+    	  sendTaskToBackend(title);
+    	  printTask(title);
+      }
+
+      function printTask(title) {
+          const container = document.getElementById("task-list");
+          const HTMLnode = `<li id="task-id" class="taskitem">${title}</li>`;
+          container.insertAdjacentHTML( 'beforeend', HTMLnode );    	  
+      }
+      
+      function sendTaskToBackend(title) {
+    	  const taskObject = new TodoTask(title);
+    	  
+    	  let jsonData = JSON.stringify(taskObject);
+
+    	  fetch(
+    			'/api/todos', 
+    			{
+    		  		method: "POST", 
+    		  		body: jsonData,
+    		  		headers: {
+    	    		    'Content-Type': 'application/json',
+    	    		}
+    			}
+    		)
+    		;
+    	  
+      }
+      
+      function loadTaskListFromBackend() {
+
+    	  fetch(
+    			'/api/todos', 
+    			{
+    		  		method: "GET",
+    		  		headers: {
+    	    		    'Content-Type': 'application/json',
+    	    		}
+    			}
+    		)
+     		.then(response => response.json())
+     		.then(data => {
+	       		  	console.log('Success:', data);
+	       			
+	       		 for (var i = 0; i < data.length; i++) {
+	       			printTask(data[i].title);
+	       		 }
+	       		  
+       		})
+      		.catch((error) => {
+      			console.error('Error !');
+      		  console.error('Error:', error);
+      		})
+    		;
+    	  
+      }
+    </script>
+  
+</body>
+</html>
