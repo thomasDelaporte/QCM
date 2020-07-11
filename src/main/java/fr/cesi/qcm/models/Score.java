@@ -50,5 +50,4 @@ public class Score {
 
     public void setId_quiz(Long id_quiz) { this.id_quiz = id_quiz; }
 
-
 }

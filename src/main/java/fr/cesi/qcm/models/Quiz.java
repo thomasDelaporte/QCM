@@ -27,4 +27,5 @@ public class Quiz {
     public String getTheme_quiz() { return theme_quiz; }
 
     public void setTheme_quiz(String theme_quiz) { this.theme_quiz = theme_quiz; }
+
 }

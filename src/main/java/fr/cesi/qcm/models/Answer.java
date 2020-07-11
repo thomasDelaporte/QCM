@@ -33,4 +33,5 @@ public class Answer {
     public Long getId_question() { return id_question; }
 
     public void setId_question(Long id_question) { this.id_question = id_question; }
+
 }

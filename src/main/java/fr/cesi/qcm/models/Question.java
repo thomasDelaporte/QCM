@@ -27,4 +27,5 @@ public class Question {
     public Long getId_quiz() { return id_quiz; }
 
     public void setId_quiz(Long id_quiz) { this.id_quiz = id_quiz; }
+
 }
