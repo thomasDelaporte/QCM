@@ -1,3 +1,4 @@
+
 package fr.cesi.qcm.models;
 
 import javax.persistence.Entity;
@@ -12,7 +13,8 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_quiz;
 
-    private String label;
+    private String theme_quiz;
+
 
     public Long getId() {
         return id_quiz;
@@ -22,11 +24,7 @@ public class Quiz {
         this.id_quiz = id_quiz;
     }
 
-    public String getLabel() {
-        return label;
-    }
+    public String getTheme_quiz() { return theme_quiz; }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
+    public void setTheme_quiz(String theme_quiz) { this.theme_quiz = theme_quiz; }
 }

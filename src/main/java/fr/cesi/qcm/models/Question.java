@@ -10,33 +10,21 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_answer;
+    private Long id_question;
 
-    private String label;
+    private String text_question;
 
-    private Boolean valid;
+    private Long id_quiz;
 
-    public Long getId() {
-        return id_answer;
-    }
+    public Long getId_question() { return id_question; }
 
-    public void setId(Long id_answer) {
-        this.id_answer = id_answer;
-    }
+    public void setId_question(Long id_question) { this.id_question = id_question; }
 
-    public String getLabel() {
-        return label;
-    }
+    public String getText_question() { return text_question; }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
+    public void setText_question(String text_question) { this.text_question = text_question; }
 
-    public Boolean getValid() {
-        return valid;
-    }
+    public Long getId_quiz() { return id_quiz; }
 
-    public void setValid(Boolean valid) {
-        this.valid = valid;
-    }
+    public void setId_quiz(Long id_quiz) { this.id_quiz = id_quiz; }
 }
