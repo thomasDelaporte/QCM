@@ -12,41 +12,25 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_answer;
 
-    private Boolean result;
+    private String text_answer;
 
-    private int total_valid;
+    private Boolean validity_answer;
 
-    private float duration;
+    private Long id_question;
 
-    public Long getId() {
-        return id_answer;
-    }
+    public Long getId_answer() { return id_answer; }
 
-    public void setId(Long id_answer) {
-        this.id_answer = id_answer;
-    }
+    public void setId_answer(Long id_answer) { this.id_answer = id_answer; }
 
-    public boolean isResult() {
-        return result;
-    }
+    public String getText_answer() { return text_answer; }
 
-    public void setResult(boolean result) {
-        this.result = result;
-    }
+    public void setText_answer(String text_answer) { this.text_answer = text_answer; }
 
-    public int getTotalValid() {
-        return total_valid;
-    }
+    public Boolean getValidity_answer() { return validity_answer; }
 
-    public void setTotalValid(int total_valid) {
-        this.total_valid = total_valid;
-    }
+    public void setValidity_answer(Boolean validity_answer) { this.validity_answer = validity_answer; }
 
-    public float getDuration() {
-        return duration;
-    }
+    public Long getId_question() { return id_question; }
 
-    public void setDuration(float duration) {
-        this.duration = duration;
-    }
+    public void setId_question(Long id_question) { this.id_question = id_question; }
 }
