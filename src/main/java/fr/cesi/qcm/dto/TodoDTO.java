@@ -23,6 +23,4 @@ public class TodoDTO {
 	public String toString() {
 		return "TodoDTO [title=" + title + "]";
 	}
-	
-	
 }

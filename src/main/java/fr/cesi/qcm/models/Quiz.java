@@ -1,4 +1,3 @@
-
 package fr.cesi.qcm.models;
 
 import javax.persistence.Entity;
@@ -24,8 +23,11 @@ public class Quiz {
         this.id_quiz = id_quiz;
     }
 
-    public String getTheme_quiz() { return theme_quiz; }
+    public String getTheme_quiz() {
+        return theme_quiz;
+    }
 
-    public void setTheme_quiz(String theme_quiz) { this.theme_quiz = theme_quiz; }
-
+    public void setTheme_quiz(String theme_quiz) {
+        this.theme_quiz = theme_quiz;
+    }
 }
