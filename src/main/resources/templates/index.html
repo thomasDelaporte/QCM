@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>QCM</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    </head>
+    <body>
+
+        <section class="left-informations home-informations">
+            <h1>QCM</h1>
+        </section>
+
+        <main class="main">
+
+            <form class="form home-form" method="GET" action="qcm">
+
+                <div class="form-input-group">
+                    <label>Votre pseudo</label>
+                    <input class="input" type="text" name="pseudo" />
+                </div>
+
+                <div class="form-input-group">
+                    <label>Choissiez le QCM</label>
+                    <select class="select" name="qcm">
+                        <option value="0">Culture general</option>
+                        <option value="1">Informatique</option>
+                    </select>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Lancer" />
+            </form>
+        </main>
+
+        <script type="text/javascript" src="../static/js/app.bundle.js"></script>
+    </body>
+</html>

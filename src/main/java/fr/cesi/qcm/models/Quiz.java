@@ -14,7 +14,6 @@ public class Quiz {
 
     private String theme_quiz;
 
-
     public Long getId() {
         return id_quiz;
     }
@@ -29,5 +28,13 @@ public class Quiz {
 
     public void setTheme_quiz(String theme_quiz) {
         this.theme_quiz = theme_quiz;
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "id_quiz=" + id_quiz +
+                ", theme_quiz='" + theme_quiz + '\'' +
+                '}';
     }
 }
