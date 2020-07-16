@@ -70,4 +70,16 @@ public class Score {
     public void setId_quiz(Long id_quiz) {
         this.id_quiz = id_quiz;
     }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "id_score=" + id_score +
+                ", pseudo='" + pseudo + '\'' +
+                ", final_score=" + final_score +
+                ", time=" + time +
+                ", date=" + date +
+                ", id_quiz=" + id_quiz +
+                '}';
+    }
 }

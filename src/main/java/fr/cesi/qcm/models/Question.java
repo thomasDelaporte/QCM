@@ -32,11 +32,21 @@ public class Question {
         this.text_question = text_question;
     }
 
+
     public Long getId_quiz() {
         return id_quiz;
     }
 
     public void setId_quiz(Long id_quiz) {
         this.id_quiz = id_quiz;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id_question=" + id_question +
+                ", text_question='" + text_question + '\'' +
+                ", id_quiz=" + id_quiz +
+                '}';
     }
 }

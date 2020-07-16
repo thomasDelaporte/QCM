@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +27,16 @@
                     <div>a</div>
                     <div>a</div>
                     <div>a</div>
+                </div>
+
+                <div class="form-input-group">
+                    <label>Choissiez le QCM</label>
+
+                    <select class="select" name="qcm">
+                        <option th:each="question : ${questions}"
+                                th:value="${question.getId_quiz()}"
+                                th:utext="${question.getText_question()}"/>
+
                 </div>
             </section>
         </main>

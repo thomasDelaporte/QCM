@@ -1,6 +1,8 @@
 package fr.cesi.qcm.controllers;
 
+import fr.cesi.qcm.models.Question;
 import fr.cesi.qcm.models.Quiz;
+import fr.cesi.qcm.repositories.QuestionRepository;
 import fr.cesi.qcm.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ public class HomeController {
 
     @Autowired
     QuizRepository quizRepository;
+    @Autowired
+    QuestionRepository questionRepository;
+
 
     @GetMapping("/")
     public String home(Model model) {
@@ -27,7 +32,22 @@ public class HomeController {
     }
 
     @RequestMapping(value= "qcm", method = RequestMethod.GET)
-    public String test() {
+    public String test(Model model) {
+
+        List<Question> questions = questionRepository.findAll();
+        model.addAttribute("questions",questions);
         return "qcm";
     }
+
+
+
+    @GetMapping("/qcm2")
+    public String qcm2(Model model) {
+
+        List<Question> questions = questionRepository.findAll();
+        model.addAttribute("questions",questions);
+        return "qcm";
+    }
+
+
 }

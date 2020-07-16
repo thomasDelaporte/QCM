@@ -49,4 +49,14 @@ public class Answer {
     public void setId_question(Long id_question) {
         this.id_question = id_question;
     }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id_answer=" + id_answer +
+                ", text_answer='" + text_answer + '\'' +
+                ", validity_answer=" + validity_answer +
+                ", id_question=" + id_question +
+                '}';
+    }
 }
