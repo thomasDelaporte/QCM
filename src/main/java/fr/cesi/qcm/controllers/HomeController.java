@@ -1,5 +1,6 @@
 package fr.cesi.qcm.controllers;
 
+import fr.cesi.qcm.models.Answer;
 import fr.cesi.qcm.models.Question;
 import fr.cesi.qcm.models.Quiz;
 import fr.cesi.qcm.repositories.AnswerRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -38,10 +40,15 @@ public class HomeController {
     }
 
     @RequestMapping(value= "qcm", method = RequestMethod.POST)
-    public String test(Model model,@RequestParam("pseudo") String pseudo,@RequestParam("qcm") String qcm) {
+    public String test(Model model,@RequestParam("pseudo") String pseudo,@RequestParam("qcm") long qcm) {
 
+        /*TODO List<Question> questions = questionRepository where id_quiz = qcm */
         List<Question> questions = questionRepository.findAll();
+
+        List<Answer> answers = answerRepository.findAll();
+
         model.addAttribute("questions",questions);
+        model.addAttribute("numberQuestions",questions.size());
         model.addAttribute("pseudo", pseudo);
         model.addAttribute("idThemeQuiz", qcm);
         return "qcm";
