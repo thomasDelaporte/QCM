@@ -31,7 +31,7 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value= "qcm", method = RequestMethod.GET)
+    @RequestMapping(value= "qcm", method = RequestMethod.POST)
     public String test(Model model) {
 
         List<Question> questions = questionRepository.findAll();
