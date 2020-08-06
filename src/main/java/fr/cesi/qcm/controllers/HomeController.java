@@ -43,32 +43,18 @@ public class HomeController {
     @RequestMapping(value= "qcm", method = RequestMethod.POST)
     public String test(Model model,@RequestParam("pseudo") String pseudo,@RequestParam("qcm") long qcm) {
 
-        /*TODO List<Question> questions = questionRepository where id_quiz = qcm */
-        /// List<Question> questions = questionRepository.findAll();
         List<Question> questions = questionRepository.findAll();
-        List<Question> questions2 = new ArrayList<Question>();
-
-        //questions.forEach(System.out.println (" ff" ));
-        //questions.removeIf(qcm != questions.id_quiz;
+        List<Question> questionsSorted = new ArrayList<Question>();
         for(Question question : questions){
-            System.out.println(question.getId_quiz());
-            System.out.println(qcm);
             if (question.getId_quiz() == qcm) {
-                System.out.println("true");
-                System.out.println(this.questionRepository.getOne(question.getId_quiz()));
-                System.out.println(this.questionRepository.getOne(question.getId_question()));
-                //questions2.add(this.questionRepository.getOne(question.getId_quiz()));
-                questions2.add(question);
+                questionsSorted.add(question);
             }
-            System.out.println(question);
+        }
 
-        };
+        List<Answer> answers = answerRepository.findAll(); //toute la liste des reponses possible pour chaque questions
 
-
-        List<Answer> answers = answerRepository.findAll();
-
-        model.addAttribute("questions",questions2);
-        model.addAttribute("numberQuestions",questions2.size());
+        model.addAttribute("questions",questionsSorted);
+        model.addAttribute("numberQuestions",questionsSorted.size());
         model.addAttribute("pseudo", pseudo);
         model.addAttribute("idThemeQuiz", qcm); //
         return "qcm";
