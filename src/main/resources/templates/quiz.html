@@ -23,20 +23,10 @@
                 </div>
 
                 <div class="qcm-answers">
-                    <div>a</div>
-                    <div>a</div>
-                    <div>a</div>
-                    <div>a</div>
-                </div>
-
-                <div class="form-input-group">
-                    <label>Choissiez le QCM</label>
-
-                    <select class="select" name="qcm">
-                        <option th:each="question : ${questions}"
-                                th:value="${question.getId_quiz()}"
-                                th:utext="${question.getText_question()}"/>
-
+                    <div th:each="question: ${questions}">
+                        <p th:text="${question.getQuiz().getTheme()}"></p>
+                        <p th:each="answer: ${question.getAnswers()}" th:text="${answer.getText_answer()}"></p>
+                    </div>
                 </div>
             </section>
         </main>

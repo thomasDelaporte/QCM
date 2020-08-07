@@ -1,9 +1,7 @@
 package fr.cesi.qcm.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Question {
@@ -12,9 +10,21 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_question;
 
-    private String text_question;
+    private String label;
 
-    private Long id_quiz;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_quiz", nullable = false)
+    private Quiz quiz;
+
+    @OneToMany(mappedBy = "question")
+    private Collection<Answer> answers;
+
+    public Question() {}
+
+    public Question(String label, Quiz quiz) {
+        this.label = label;
+        this.quiz = quiz;
+    }
 
     public Long getId_question() {
         return id_question;
@@ -24,29 +34,27 @@ public class Question {
         this.id_question = id_question;
     }
 
-    public String getText_question() {
-        return text_question;
+    public String getLabel() {
+        return this.label;
     }
 
-    public void setText_question(String text_question) {
-        this.text_question = text_question;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-
-    public Long getId_quiz() {
-        return id_quiz;
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public void setId_quiz(Long id_quiz) {
-        this.id_quiz = id_quiz;
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id_question=" + id_question +
-                ", text_question='" + text_question + '\'' +
-                ", id_quiz=" + id_quiz +
-                '}';
+    public Collection<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(Collection<Answer> answers) {
+        this.answers = answers;
     }
 }

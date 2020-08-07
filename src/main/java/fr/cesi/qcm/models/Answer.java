@@ -1,9 +1,6 @@
 package fr.cesi.qcm.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Answer {
@@ -16,7 +13,11 @@ public class Answer {
 
     private Boolean validity_answer;
 
-    private Long id_question;
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "id_question")
+    private Question question;
+
+    public Answer() {}
 
     public Long getId_answer() {
         return id_answer;
@@ -42,21 +43,11 @@ public class Answer {
         this.validity_answer = validity_answer;
     }
 
-    public Long getId_question() {
-        return id_question;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setId_question(Long id_question) {
-        this.id_question = id_question;
-    }
-
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "id_answer=" + id_answer +
-                ", text_answer='" + text_answer + '\'' +
-                ", validity_answer=" + validity_answer +
-                ", id_question=" + id_question +
-                '}';
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }
