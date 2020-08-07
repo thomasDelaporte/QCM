@@ -1,14 +1,6 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>QCM</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
-    </head>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout('Accueil', ~{::body})">
     <body>
-
         <section class="left-informations home-informations">
             <h1>QCM</h1>
         </section>
@@ -27,13 +19,11 @@
                     <select class="select" name="qcm">
                         <option th:each="quiz : ${quizzes}"
                                 th:value="${quiz.getId()}"
-                                th:utext="${quiz.getTheme()}"/>
+                                th:utext="${quiz.getTheme()}" />
                 </div>
 
                 <input type="submit" class="btn btn-primary" value="Lancer" />
             </form>
         </main>
-
-        <script type="text/javascript" src="../static/js/app.bundle.js"></script>
     </body>
 </html>

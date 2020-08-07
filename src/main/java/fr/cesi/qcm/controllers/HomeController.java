@@ -46,4 +46,9 @@ public class HomeController {
 
         return "quiz";
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
 }
