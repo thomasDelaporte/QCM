@@ -1,10 +1,7 @@
 package fr.cesi.qcm.controllers;
 
 import fr.cesi.qcm.models.Quiz;
-import fr.cesi.qcm.repositories.AnswerRepository;
-import fr.cesi.qcm.repositories.QuestionRepository;
 import fr.cesi.qcm.repositories.QuizRepository;
-import fr.cesi.qcm.repositories.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,10 +42,5 @@ public class HomeController {
         quiz.getQuestions().forEach((question -> System.out.println(question.getAnswers())));
 
         return "quiz";
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "test";
     }
 }
