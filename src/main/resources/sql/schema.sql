@@ -110,7 +110,7 @@ ALTER SEQUENCE public.answer_id_question_seq OWNED BY public.answer.id_question;
 
 CREATE TABLE public.question (
     id_question integer NOT NULL,
-    text_question text,
+    label text,
     id_quiz integer NOT NULL
 );
 
@@ -174,7 +174,7 @@ ALTER SEQUENCE public.question_id_quiz_seq OWNED BY public.question.id_quiz;
 
 CREATE TABLE public.quiz (
     id_quiz integer NOT NULL,
-    theme_quiz text
+    theme text
 );
 
 
