@@ -9,7 +9,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_answer;
 
-    private String text_answer;
+    private String label;
 
     private Boolean validity_answer;
 
@@ -27,12 +27,12 @@ public class Answer {
         this.id_answer = id_answer;
     }
 
-    public String getText_answer() {
-        return text_answer;
+    public String getLabel() {
+        return label;
     }
 
-    public void setText_answer(String text_answer) {
-        this.text_answer = text_answer;
+    public void setLabel(String label ) {
+        this.label = label ;
     }
 
     public Boolean getValidity_answer() {

@@ -17,7 +17,7 @@
                 <div class="qcm-answers">
                     <div th:each="question: ${questions}">
                         <p th:text="${question.getQuiz().getTheme()}"></p>
-                        <p th:each="answer: ${question.getAnswers()}" th:text="${answer.getText_answer()}"></p>
+                        <p th:each="answer: ${question.getAnswers()}" th:text="${answer.getLabel()}"></p>
                     </div>
                 </div>
             </section>

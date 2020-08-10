@@ -45,7 +45,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.answer (
     id_answer integer NOT NULL,
-    text_answer text,
+    label text,
     validity_answer boolean,
     id_question integer NOT NULL
 );
