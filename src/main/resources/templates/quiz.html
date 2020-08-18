@@ -14,9 +14,11 @@
                     <h1 style="text-align: center; margin-top: 60px">Question actuelle</h1>
                 </div>
 
+
                 <div class="qcm-answers">
                     <div th:each="question: ${questions}">
                         <p th:text="${question.getQuiz().getTheme()}"></p>
+                        <p th:text="${question.getLabel()}"></p>
                         <p th:each="answer: ${question.getAnswers()}" th:text="${answer.getLabel()}"></p>
                     </div>
                 </div>
