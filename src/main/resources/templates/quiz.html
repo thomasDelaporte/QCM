@@ -11,19 +11,23 @@
 
                 <h1 data-chronometer>00:00:00</h1>
 
-                <div class="qcm-question">
-                    <h4>Nom du questionnaire</h4>
-                    <h1 style="text-align: center; margin-top: 60px">Question actuelle</h1>
-                </div>
+                <form method="post" th:action="@{/score}" class="qcm-questions">
 
+                    <input type="hidden" name="id_quiz" th:value="${id_quiz}" />
+                    <input type="hidden" name="pseudo" th:value="${pseudo}" />
 
-                <div class="qcm-answers">
-                    <div th:each="question: ${questions}">
-                        <p th:text="${question.getQuiz().getTheme()}"></p>
-                        <p th:text="${question.getLabel()}"></p>
-                        <p th:each="answer: ${question.getAnswers()}" th:text="${answer.getLabel()}"></p>
-                    </div>
-                </div>
+                    <fieldset class="qcm-questions-item" th:each="question: ${questions}">
+                        <h2 th:text="${question.getLabel()}"></h2>
+                        <small th:text="'Question' + ${questionStat.index}"></small>
+
+                        <div th:each="answer: ${question.getAnswers()}">
+                            <label th:text="${answer.getLabel()}" th:for="${answer.getId_answer()}"></label>
+                            <input type="radio" th:id="${answer.getId_answer()}" th:name="'answer[' + ${question.getId_question()} + ']'" th:value="${answer.getId_answer()}" />
+                        </div>
+                    </fieldset>
+
+                    <button>Soumettre QCM</button>
+                </form>
             </section>
         </main>
 

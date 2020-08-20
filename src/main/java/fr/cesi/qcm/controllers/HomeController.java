@@ -14,33 +14,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
 
     @Autowired
     QuizRepository quizRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public String home(Model model) {
 
         List<Quiz> quizzes = quizRepository.findAll();
         model.addAttribute("quizzes", quizzes);
 
         return "index";
-    }
-
-    @RequestMapping(value= "quiz", method = RequestMethod.POST)
-    public String test(Model model, @RequestParam("pseudo") String pseudo, @RequestParam("qcm") long id_qcm) {
-
-        Optional<Quiz> quizOptional = quizRepository.findById(id_qcm);
-
-        if(quizOptional.isEmpty())
-            return "redirect:/";
-
-        Quiz quiz = quizOptional.get();
-        model.addAttribute("questions", quiz.getQuestions());
-
-        quiz.getQuestions().forEach((question -> System.out.println(question.getAnswers())));
-
-        return "quiz";
     }
 }
