@@ -1,11 +1,9 @@
 package fr.cesi.qcm.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalTime;
+import java.util.Collection;
 
 @Entity
 public class Score {
@@ -22,7 +20,20 @@ public class Score {
 
     private Date date;
 
-    private Long id_quiz;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_quiz", nullable = false)
+    private Quiz quiz;
+
+    public Score(){}
+
+    public Score(String pseudo, Long final_score, Long time, Date date, Quiz quiz) {
+    this.pseudo = pseudo;
+    this.final_score = final_score;
+    this.time = time;
+    this.quiz = quiz;
+    }
+
+
 
     public Long getId_score() {
         return id_score;
@@ -64,12 +75,12 @@ public class Score {
         this.date = date;
     }
 
-    public Long getId_quiz() {
-        return id_quiz;
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public void setId_quiz(Long id_quiz) {
-        this.id_quiz = id_quiz;
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 
     @Override
@@ -80,7 +91,7 @@ public class Score {
                 ", final_score=" + final_score +
                 ", time=" + time +
                 ", date=" + date +
-                ", id_quiz=" + id_quiz +
+                ", id_quiz=" + quiz +
                 '}';
     }
 }
