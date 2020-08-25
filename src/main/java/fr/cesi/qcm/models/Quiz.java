@@ -38,7 +38,5 @@ public class Quiz {
         return this.scores;
     }
 
-    public Collection<Score> getScores() {return scores;}
-
     public void setScore(Collection<Score> score) {this.scores = score;}
 }
