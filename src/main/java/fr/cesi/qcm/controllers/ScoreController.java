@@ -1,5 +1,6 @@
 package fr.cesi.qcm.controllers;
 
+import fr.cesi.qcm.dto.QuizResult;
 import fr.cesi.qcm.models.Score;
 import fr.cesi.qcm.repositories.QuestionRepository;
 import fr.cesi.qcm.repositories.ScoreRepository;
@@ -29,15 +30,11 @@ public class ScoreController {
         return "score";
     }
 
-    @GetMapping("/{id_score}")
-    public String getScore(@PathVariable final long id_score) {
-        return "score";
-    }
-
     @PostMapping
-    public String registerScore(@RequestParam("id_quiz") final long id_quiz, @RequestParam("pseudo") final String pseudo, @RequestParam Object answer,
-            ServletRequest request) {
+    public String registerScore(@ModelAttribute QuizResult quizResult, ServletRequest request) {
 
+        System.out.println(quizResult);
+        /*
         Score score = new Score();
 
         score.setId_quiz(id_quiz);
@@ -47,14 +44,8 @@ public class ScoreController {
         score.setTime(null);
         score.setFinal_score((long) 0);
 
-        scoreRepository.save(score);
+        scoreRepository.save(score);*/
 
-        Map<String, String[]> answers = request.getParameterMap();
-        answers.remove("id_quiz");
-        answers.remove("pseudo");
-
-        System.out.println(answer);
-
-        return "redirect:/score/1";
+        return "score";
     }
 }

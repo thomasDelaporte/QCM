@@ -6,9 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title th:text="'CESI QCM - ' + ${title}"></title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bundle.css}"/>
     </head>
-    <body th:insert="${content}">
-        <script type="text/javascript" src="../static/js/app.bundle.js"></script>
+    <body>
+
+        <section class="bar" th:classappend="${title} == 'Accueil' ? 'bar-large' : ''">
+
+            <h1>QCM</h1>
+            <small>Project for CESI</small>
+        </section>
+
+        <main class="main" th:include="${content}"></main>
+
+        <script type="text/javascript" th:src="@{/js/app.bundle.js}"></script>
     </body>
 </html>

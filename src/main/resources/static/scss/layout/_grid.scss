@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex-grow: 1;
+    padding: 0 10rem;
+}

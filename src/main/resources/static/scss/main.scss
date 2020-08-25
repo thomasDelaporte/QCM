@@ -1,0 +1,22 @@
+body {
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    font-size: 13px;
+}
+
+@import 'base/reset';
+@import 'base/typography';
+
+@import 'layout/grid';
+
+@import 'components/button';
+@import 'components/form';
+@import 'components/progressbar';
+
+@import 'modules/bar';
+
+@import 'pages/home';
+@import 'pages/quiz';

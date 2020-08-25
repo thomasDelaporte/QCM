@@ -19,13 +19,6 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private Collection<Answer> answers;
 
-    public Question() {}
-
-    public Question(String label, Quiz quiz) {
-        this.label = label;
-        this.quiz = quiz;
-    }
-
     public Long getId_question() {
         return id_question;
     }

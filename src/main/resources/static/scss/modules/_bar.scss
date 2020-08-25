@@ -1,0 +1,18 @@
+.bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100px;
+    background-color: #F8F9F9;
+    overflow: hidden;
+
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+
+    &.bar-large {
+        width: 40%;
+        writing-mode: initial;
+    }
+}

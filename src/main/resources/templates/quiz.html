@@ -1,66 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout('Quiz', ~{::body})">
     <body>
-        <section class="left-informations">
-            <h1>QCM</h1>
-        </section>
+        <form class="form" method="post" th:action="@{/score}" th:object="${quizResult}" >
 
-        <main class="main qcm">
+            <input type="hidden" th:name="'id_quiz'" th:value="${quizResult.getIdQuiz()}" >
+            <input type="hidden" th:name="'pseudo'" th:value="${quizResult.getPseudo()}" >
 
-            <section class="qcm-container">
+            <fieldset class="fieldset" th:each="question: ${questions}">
 
-                <h1 data-chronometer>00:00:00</h1>
+                <h2 th:text="${question.getLabel()}"></h2>
 
-                <form method="post" th:action="@{/score}" class="qcm-questions">
+                <div class="quiz-answers">
+                    <label class="form-radio-group" th:each="answer: ${question.getAnswers()}">
+                        <input type="radio" th:name="'answer[' + ${question.getId_question()} + ']'" th:value="${answer.getId_answer()}" required />
+                        <span th:text="${answer.getLabel()}"></span>
+                    </label>
+                </div>
+            </fieldset>
 
-                    <input type="hidden" name="id_quiz" th:value="${id_quiz}" />
-                    <input type="hidden" name="pseudo" th:value="${pseudo}" />
-
-                    <fieldset class="qcm-questions-item" th:each="question: ${questions}">
-                        <h2 th:text="${question.getLabel()}"></h2>
-                        <small th:text="'Question' + ${questionStat.index}"></small>
-
-                        <div th:each="answer: ${question.getAnswers()}">
-                            <label th:text="${answer.getLabel()}" th:for="${answer.getId_answer()}"></label>
-                            <input type="radio" th:id="${answer.getId_answer()}" th:name="'answer[' + ${question.getId_question()} + ']'" th:value="${answer.getId_answer()}" />
-                        </div>
-                    </fieldset>
-
-                    <button>Soumettre QCM</button>
-                </form>
-            </section>
-        </main>
-
-        <script type="text/javascript" src="../static/js/app.bundle.js"></script>
-    <script >
-        (() => {
-            let hours = `00`,
-                minutes = `00`,
-                seconds = `00`,
-                chronometerDisplay = document.querySelector(`[data-chronometer]`), chronometerCall
-
-            function chronometer() {
-                seconds ++
-                if (seconds < 10) seconds = `0` + seconds
-
-                if (seconds > 59) {
-                    seconds = `00`
-                    minutes ++
-                    if (minutes < 10) minutes = `0` + minutes
-                }
-
-                if (minutes > 59) {
-                    minutes = `00`
-                    hours ++
-                    if (hours < 10) hours = `0` + hours
-                }
-                chronometerDisplay.textContent = `${hours}:${minutes}:${seconds}`
-            }
-            chronometerCall.onload = setInterval(chronometer, 1000)
-        })()
-
-
-    </script>
-
+            <button class="btn btn-primary">Soumettre</button>
+        </form>
     </body>
 </html>

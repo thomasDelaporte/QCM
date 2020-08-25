@@ -1,0 +1,47 @@
+.form {
+
+    &>*:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .form-input-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-input-group, .form-radio-group {
+        border: 1px solid #ebebec;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+    .form-radio-group {
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-left: 5px;
+        }
+    }
+
+    .label {
+        font-size: 12px;
+        color: #969699;
+        margin-bottom: 10px;
+    }
+
+    .input, .select, .textarea {
+        border: none;
+        outline: none;
+        padding: 5px;
+
+        &:focus ~ .label {
+            color: #000;
+        }
+    }
+
+    .fieldset {
+        border: none;
+        padding: 20px 0;
+    }
+}

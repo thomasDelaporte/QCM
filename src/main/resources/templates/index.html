@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout('Accueil', ~{::body})">
     <body>
-        <section class="left-informations home-informations">
-            <h1>QCM</h1>
-        </section>
+        <div class="home-form">
 
-        <main class="main">
+            <h2>Sélectionner un questionnaire,<br/>et lancer vous!</h2>
 
-            <form class="form home-form" method="POST" th:action="@{/quiz}">
+            <form class="form" method="POST" th:action="@{/quiz}">
 
                 <div class="form-input-group">
-                    <label>Votre pseudo</label>
-                    <input class="input" type="text" name="pseudo" />
+                    <label class="label" for="pseudo">Pseudonyme</label>
+                    <input class="input" id="pseudo" type="text" name="pseudo" required />
                 </div>
 
                 <div class="form-input-group">
-                    <label>Choissiez le QCM</label>
-                    <select class="select" name="qcm">
+                    <label class="label" for="quiz">Quizz</label>
+                    <select class="select" id="quiz" name="quiz" required>
                         <option th:each="quiz : ${quizzes}"
                                 th:value="${quiz.getId()}"
-                                th:utext="${quiz.getTheme()}" />
+                                th:utext="${quiz.getTheme()}"></option>
+                    </select>
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Lancer" />
+                <button class="btn btn-primary">Lancer</button>
             </form>
-        </main>
+        </div>
     </body>
 </html>

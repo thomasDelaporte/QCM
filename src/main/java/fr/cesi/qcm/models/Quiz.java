@@ -15,12 +15,11 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz")
     private Collection<Question> questions;
 
+    @OneToMany
+    private Collection<Score> scores;
+
     public Long getId() {
         return id_quiz;
-    }
-
-    public void setId(Long id_quiz) {
-        this.id_quiz = id_quiz;
     }
 
     public String getTheme() {
@@ -32,10 +31,10 @@ public class Quiz {
     }
 
     public Collection<Question> getQuestions() {
-        return questions;
+        return this.questions;
     }
 
-    public void setQuestion(Collection<Question> question) {
-        this.questions = question;
+    public Collection<Score> getScores() {
+        return this.scores;
     }
 }

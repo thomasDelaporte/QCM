@@ -1,0 +1,27 @@
+.progressbar {
+    display: block;
+    background-color: #ebebec;
+    height: 7px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+
+    .progressbar-progress {
+        position: relative;
+        width: 0;
+        height: 100%;
+        background-color: #65d661;
+        border-radius: inherit;
+
+        &:before {
+            content: '';
+            display: block;
+            width: 11px;
+            height: 11px;
+            background-color: red;
+            border-radius: 100%;
+            position: absolute;
+            right: -7px;
+            top: -7px;
+        }
+    }
+}
