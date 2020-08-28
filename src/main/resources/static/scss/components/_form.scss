@@ -1,12 +1,12 @@
 .form {
 
-    &>*:not(:last-child) {
+    &>*:not(:last-child), .fieldset>*:not(:last-child) {
         margin-bottom: 20px;
     }
 
     .form-input-group {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .form-input-group, .form-radio-group {
@@ -28,14 +28,16 @@
         font-size: 12px;
         color: #969699;
         margin-bottom: 10px;
+        transition: color .2s;
     }
 
     .input, .select, .textarea {
         border: none;
         outline: none;
         padding: 5px;
+        transition: all .2s;
 
-        &:focus ~ .label {
+        &:focus + .label {
             color: #000;
         }
     }

@@ -2,6 +2,7 @@ package fr.cesi.qcm.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Quiz {
@@ -13,10 +14,10 @@ public class Quiz {
     private String theme;
 
     @OneToMany(mappedBy = "quiz")
-    private Collection<Question> questions;
+    private List<Question> questions;
 
-    @OneToMany
-    private Collection<Score> scores;
+    @OneToMany(mappedBy = "quiz")
+    private List<Score> scores;
 
     public Long getId() {
         return id_quiz;
@@ -30,13 +31,15 @@ public class Quiz {
         this.theme = theme;
     }
 
-    public Collection<Question> getQuestions() {
+    public List<Question> getQuestions() {
         return this.questions;
     }
 
-    public Collection<Score> getScores() {
+    public List<Score> getScores() {
         return this.scores;
     }
 
-    public void setScore(Collection<Score> score) {this.scores = score;}
+    public void setScore(List<Score> score) {
+        this.scores = score;
+    }
 }

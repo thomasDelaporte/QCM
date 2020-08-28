@@ -1,5 +1,7 @@
 package fr.cesi.qcm.models;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.Collection;
 

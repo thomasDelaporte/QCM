@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout('Accueil', ~{::body})">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout-clean :: layout-clean('Accueil', ~{::body})">
     <body>
-        <div class="home-form">
 
-            <h2>Sélectionner un questionnaire,<br/>et lancer vous!</h2>
+        <section class="bar bar-large">
 
-            <form class="form" method="POST" th:action="@{/quiz}">
+            <h1>QCM</h1>
+            <small>Project for CESI</small>
+        </section>
 
-                <div class="form-input-group">
-                    <label class="label" for="pseudo">Pseudonyme</label>
-                    <input class="input" id="pseudo" type="text" name="pseudo" required />
-                </div>
+        <main class="main">
 
-                <div class="form-input-group">
-                    <label class="label" for="quiz">Quizz</label>
-                    <select class="select" id="quiz" name="quiz" required>
-                        <option th:each="quiz : ${quizzes}"
-                                th:value="${quiz.getId()}"
-                                th:utext="${quiz.getTheme()}"></option>
-                    </select>
-                </div>
+            <div class="home-form">
 
-                <button class="btn btn-primary">Lancer</button>
-            </form>
-        </div>
+                <h2>Sélectionner un questionnaire,<br/>et lancer vous!</h2>
+
+                <form class="form" method="POST" th:action="@{/quiz}">
+
+                    <div class="form-input-group">
+                        <input class="input" id="pseudo" type="text" name="pseudo" required />
+                        <label class="label" for="pseudo">Pseudonyme</label>
+                    </div>
+
+                    <div class="form-input-group">
+                        <select class="select" id="quiz" name="quiz" required>
+                            <option th:each="quiz : ${quizzes}"
+                                    th:value="${quiz.getId()}"
+                                    th:utext="${quiz.getTheme()}"></option>
+                        </select>
+                        <label class="label" for="quiz">Quizz</label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary">Lancer</button>
+                        <a class="btn btn-secondary" th:href="@{/quiz/create}">Créer un quizz</a>
+                    </div>
+                </form>
+            </div>
+        </main>
     </body>
 </html>

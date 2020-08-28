@@ -11,7 +11,7 @@ public class Answer {
 
     private String label;
 
-    private Boolean validity_answer;
+    private Boolean validity;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "id_question")
@@ -35,12 +35,12 @@ public class Answer {
         this.label = label ;
     }
 
-    public Boolean getValidity_answer() {
-        return validity_answer;
+    public Boolean getValidity() {
+        return this.validity;
     }
 
-    public void setValidity_answer(Boolean validity_answer) {
-        this.validity_answer = validity_answer;
+    public void setValidity(boolean validity) {
+        this.validity = validity;
     }
 
     public Question getQuestion() {

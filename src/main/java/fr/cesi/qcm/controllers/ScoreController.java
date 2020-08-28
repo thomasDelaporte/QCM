@@ -1,19 +1,27 @@
 package fr.cesi.qcm.controllers;
 
 import fr.cesi.qcm.dto.QuizResult;
+import fr.cesi.qcm.models.Answer;
+import fr.cesi.qcm.models.Question;
+import fr.cesi.qcm.models.Quiz;
 import fr.cesi.qcm.models.Score;
-import fr.cesi.qcm.repositories.QuestionRepository;
+import fr.cesi.qcm.repositories.AnswerRepository;
+import fr.cesi.qcm.repositories.QuizRepository;
 import fr.cesi.qcm.repositories.ScoreRepository;
+import fr.cesi.qcm.services.AnswerService;
+import fr.cesi.qcm.services.QuizService;
+import fr.cesi.qcm.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.DateUtils;
 
 import javax.servlet.ServletRequest;
-import java.sql.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -21,30 +29,63 @@ import java.util.stream.Collectors;
 public class ScoreController {
 
     @Autowired
-    private ScoreRepository scoreRepository;
+    private QuizService quizService;
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private ScoreService scoreService;
 
-    public String getScoreForQuiz(@PathVariable final long id_quiz) {
-        return "score";
-    }
+    @Autowired
+    private AnswerService answerService;
 
     @PostMapping
-    public String registerScore(@ModelAttribute QuizResult quizResult, ServletRequest request) {
+    public String registerScore(Model model, @ModelAttribute QuizResult quizResult, HttpServletRequest request) {
 
-        System.out.println(quizResult);
-        /*
+        Optional<Quiz> quiz = quizService.getQuiz(quizResult.getIdQuiz());
+
+        /**
+         * Check if the quiz exists.
+         */
+        if(quiz.isEmpty())
+            return "error";
+
+        Map<Long, Long> quizResultAnswers = quizResult.getAnswers();
+
+        /**
+         * Calculate the time taken by the user by comparing the start
+         * value and the end value.
+         */
+        HttpSession httpSession = request.getSession(false);
+
+        if(httpSession == null)
+            return "error";
+
+        long quizStart = (long) httpSession.getAttribute("quiz_start");
+        long quizEnd = (long) System.currentTimeMillis();
+        long quizDuration = (quizEnd - quizStart) / 1000;
+
+        httpSession.removeAttribute("quiz_start");
+
+        /**
+         * Retrieve the number of correct answers.
+         */
+        long validAnswers = quizResultAnswers.values().stream().
+                filter((e) -> answerService.getAnswer(e).get().getValidity() ).count();
+
+
         Score score = new Score();
 
-        score.setId_quiz(id_quiz);
-        score.setDate(new Date(System.currentTimeMillis()));
+        score.setQuiz(quiz.get());
+        score.setPseudo(quizResult.getPseudo());
+        score.setValidAnswers((int) validAnswers);
+        score.setDuration(quizDuration);
+        score.setCreationDate(new Date());
 
-        score.setPseudo(pseudo);
-        score.setTime(null);
-        score.setFinal_score((long) 0);
+        score = scoreService.createScore(score);
 
-        scoreRepository.save(score);*/
+        model.addAttribute("quiz_duration", LocalTime.MIN.plusSeconds(quizDuration).toString());
+        model.addAttribute("total_questions", quizResultAnswers.size());
+
+        model.addAttribute("score", score);
 
         return "score";
     }

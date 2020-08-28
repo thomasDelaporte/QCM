@@ -26,6 +26,11 @@ input:-webkit-autofill:active {
   transition-property: background-color, color;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 h1 {
   font-size: 5rem;
 }
@@ -49,8 +54,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   flex-grow: 1;
   padding: 0 10rem;
+}
+.main .container {
+  width: 70%;
 }
 
 .btn {
@@ -84,12 +93,12 @@ body {
   background-color: #ebebec;
 }
 
-.form > *:not(:last-child) {
+.form > *:not(:last-child), .form .fieldset > *:not(:last-child) {
   margin-bottom: 20px;
 }
 .form .form-input-group {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 .form .form-input-group, .form .form-radio-group {
   border: 1px solid #ebebec;
@@ -107,13 +116,15 @@ body {
   font-size: 12px;
   color: #969699;
   margin-bottom: 10px;
+  transition: color 0.2s;
 }
 .form .input, .form .select, .form .textarea {
   border: none;
   outline: none;
   padding: 5px;
+  transition: all 0.2s;
 }
-.form .input:focus ~ .label, .form .select:focus ~ .label, .form .textarea:focus ~ .label {
+.form .input:focus + .label, .form .select:focus + .label, .form .textarea:focus + .label {
   color: #000;
 }
 .form .fieldset {
@@ -153,7 +164,8 @@ body {
   justify-content: center;
   align-items: center;
   width: 100px;
-  background-color: #F8F9F9;
+  background: linear-gradient(to bottom, #a164de, #8a5ae3);
+  color: #fff;
   overflow: hidden;
   writing-mode: vertical-lr;
   text-orientation: mixed;
@@ -172,7 +184,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
-  grid-auto-rows: 50px;
+  grid-auto-rows: minmax(50px, auto);
 }
 
 .quiz-progressbar {

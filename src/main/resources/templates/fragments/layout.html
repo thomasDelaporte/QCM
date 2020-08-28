@@ -11,14 +11,10 @@
     </head>
     <body>
 
-        <section class="bar" th:classappend="${title} == 'Accueil' ? 'bar-large' : ''">
-
+        <section class="bar">
             <h1>QCM</h1>
-            <small>Project for CESI</small>
         </section>
 
         <main class="main" th:include="${content}"></main>
-
-        <script type="text/javascript" th:src="@{/js/app.bundle.js}"></script>
     </body>
 </html>

@@ -5,8 +5,10 @@
     align-items: center;
 
     width: 100px;
-    background-color: #F8F9F9;
+    background: linear-gradient(to bottom, #1f6de5, #1465ed);
+    color: #fff;
     overflow: hidden;
+    border-radius: 10px;
 
     writing-mode: vertical-lr;
     text-orientation: mixed;

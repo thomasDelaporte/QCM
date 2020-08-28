@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout('Create quiz', ~{::body})">
+<body>
+
+    <div class="container">
+
+        <h2>Créer un nouveau questionnaire</h2>
+
+        <form class="form">
+
+            <div class="form-input-group">
+                <input class="input" type="text" name="theme" required />
+                <label class="label">Thème</label>
+            </div>
+
+            <fieldset class="fieldset form-tab-item">
+
+                <div class="form-input-group">
+                    <input class="input" type="text" name="label" required />
+                    <label class="label">Question</label>
+                </div>
+
+                <div class="quiz-answers">
+
+                    <div class="form-input-group">
+                        <input class="input" type="text" name="answer[0]" required  />
+                        <label class="label">Réponse 1</label>
+                    </div>
+
+                    <div class="form-input-group">
+                        <input class="input" type="text" name="answer[1]" required  />
+                        <label class="label">Réponse 2</label>
+                    </div>
+
+                    <div class="form-input-group">
+                        <input class="input" type="text" name="answer[2]" required  />
+                        <label class="label">Réponse 3</label>
+                    </div>
+
+                    <div class="form-input-group">
+                        <input class="input" type="text" name="answer[3]" required  />
+                        <label class="label">Réponse 4</label>
+                    </div>
+                </div>
+
+                <div class="form-input-group">
+                    <select class="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                    <label class="label">Selectionner la bonne réponse</label>
+                </div>
+            </fieldset>
+
+            <button class="btn btn-primary">Créer le quiz</button>
+        </form>
+    </div>
+
+</body>
+</html>

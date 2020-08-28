@@ -2,6 +2,7 @@ package fr.cesi.qcm.controllers;
 
 import fr.cesi.qcm.models.Quiz;
 import fr.cesi.qcm.repositories.QuizRepository;
+import fr.cesi.qcm.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +19,12 @@ import java.util.Optional;
 public class HomeController {
 
     @Autowired
-    QuizRepository quizRepository;
+    QuizService quizService;
 
     @GetMapping
     public String home(Model model) {
 
-        List<Quiz> quizzes = quizRepository.findAll();
+        List<Quiz> quizzes = quizService.getAllQuiz();
         model.addAttribute("quizzes", quizzes);
 
         return "index";

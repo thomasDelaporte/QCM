@@ -1,41 +1,32 @@
 package fr.cesi.qcm.models;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 public class Score {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_score;
-
-    private String pseudo;
-
-    private Long final_score;
-
-    private Long time;
-
-    private Date date;
+    private long id_score;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_quiz", nullable = false)
     private Quiz quiz;
 
-    public Score(){}
+    private String pseudo;
 
-    public Score(String pseudo, Long final_score, Long time, Date date, Quiz quiz) {
-        this.pseudo = pseudo;
-        this.final_score = final_score;
-        this.time = time;
-        this.quiz = quiz;
+    private int validAnswers;
+
+    private long duration;
+
+    private Date creationDate;
+
+    public Long getId() {
+        return this.id_score;
     }
 
-    public Long getId_score() {
-        return id_score;
-    }
-
-    public void setId_score(Long id_score) {
+    public void setId(Long id_score) {
         this.id_score = id_score;
     }
 
@@ -47,28 +38,20 @@ public class Score {
         this.pseudo = pseudo;
     }
 
-    public Long getFinal_score() {
-        return final_score;
+    public int getValidAnswers() {
+        return this.validAnswers;
     }
 
-    public void setFinal_score(Long final_score) {
-        this.final_score = final_score;
+    public void setValidAnswers(int validAnswers) {
+        this.validAnswers = validAnswers;
     }
 
-    public Long getTime() {
-        return time;
+    public Long getDuration() {
+        return this.duration;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDuration(long quizDuration) {
+        this.duration = quizDuration;
     }
 
     public Quiz getQuiz() {
@@ -77,5 +60,13 @@ public class Score {
 
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }

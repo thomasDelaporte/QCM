@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout('Quiz', ~{::body})">
-<head>
-    <meta charset="UTF-8">
-    <title>TitleRanking</title>
-</head>
 <body>
-
-
-<form method="post" th:action="@{/score2}" class="qcm-questions">
-    <fieldset class="qcm-questions-item" th:each="score, iStat: ${scores}">
-        <h2 th:text="'N °' + ${iStat.index + 1 }"></h2>
-        <h2 th:text="'Pseudo : ' + ${score.getPseudo()}"></h2>
-        <h2 th:text="'Score : ' + ${score.getFinal_score()}"></h2>
-        <h2 th:text="'Temps : ' + ${score.getTime()} + 's'"></h2>
-        <h2 th:text="'Date :'+ ${score.getDate()}"></h2>
-        <h2 th:text="'Id Score : ' + ${score.getId_score()}"></h2>
-    </fieldset>
-</form>
-
+    <form method="post" th:action="@{/score2}" class="qcm-questions">
+        <fieldset class="qcm-questions-item" th:each="score: ${scores}">
+            <h2 th:text="'N °' + ${scoreStat.index + 1 }"></h2>
+            <h2 th:text="'Pseudo : ' + ${score.getPseudo()}"></h2>
+            <h2 th:text="'Score : ' + ${score.getValidAnswers()}"></h2>
+            <h2 th:text="'Temps : ' + ${score.getDuration()} + 's'"></h2>
+            <h2 th:text="'Date :'+ ${score.getCreationDate()}"></h2>
+        </fieldset>
+    </form>
 </body>
 </html>

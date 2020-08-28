@@ -2,19 +2,13 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout('Score', ~{::body})">
     <body>
 
-        <h1>Résultat</h1>
+        <div class="score-wrapper">
+            <h1>Résultat</h1>
 
-        <p>3 des 10 réponses aux questions sont correcte</p>
+            <p th:text="${score.getValidAnswers() + ' des ' + total_questions + ' réponses aux questions sont correcte'}"></p>
+            <span th:text="'Votre temps : ' + ${quiz_duration}"></span>
 
-        <small>Votre temps : 00:28:56</small>
-
-        <div class="card">
-            <div class="card-row">
-                <span>Score moyen</span>
-            </div>
-            <div class="card-row">
-                <span>Votre score</span>
-            </div>
+            <a th:href="@{/}" class="btn btn-primary">Faire un nouveau quiz</a>
         </div>
     </body>
 </html>
