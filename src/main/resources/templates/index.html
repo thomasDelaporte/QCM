@@ -32,9 +32,25 @@
 
                     <div class="form-actions">
                         <button class="btn btn-primary">Lancer</button>
-                        <a class="btn btn-secondary" th:href="@{/quiz/create}">Créer un quizz</a>
+                        <button class="btn btn-secondary" onclick="redirectToScore(event)">Voir les scores</button>
                     </div>
                 </form>
+
+                <script type="text/javascript" th:inline="javascript">
+                    /*<![CDATA[*/
+
+                        const quizOption = document.getElementById("quiz");
+                        const scoresLink = /*[[@{/quiz/score}]]*/'';
+
+                        function redirectToScore(e) {
+
+                            e.preventDefault();
+
+                            const quizSelected = quizOption.options[quizOption.selectedIndex].value;
+                            window.location.href = scoresLink + "/" + quizSelected;
+                        }
+                    /*]]>*/
+                </script>
             </div>
         </main>
     </body>

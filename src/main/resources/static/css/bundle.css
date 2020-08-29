@@ -28,7 +28,6 @@ input:-webkit-autofill:active {
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
 h1 {
@@ -48,6 +47,7 @@ h3 {
 body {
   display: flex;
   min-height: 100vh;
+  padding: 25px;
 }
 
 .main {
@@ -70,6 +70,7 @@ body {
   border: 2px solid;
   cursor: pointer;
   margin-right: 20px;
+  text-decoration: none;
   font-weight: bold;
   color: #fff;
 }
@@ -163,10 +164,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  background: linear-gradient(to bottom, #a164de, #8a5ae3);
+  width: 20%;
+  background: linear-gradient(to bottom, #1f6de5, #1465ed);
   color: #fff;
   overflow: hidden;
+  border-radius: 5px;
   writing-mode: vertical-lr;
   text-orientation: mixed;
 }
@@ -189,6 +191,12 @@ body {
 
 .quiz-progressbar {
   margin-bottom: 30px;
+}
+
+.score-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*# sourceMappingURL=bundle.css.map */

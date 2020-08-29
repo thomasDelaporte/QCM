@@ -2,7 +2,6 @@ package fr.cesi.qcm.controllers;
 
 import fr.cesi.qcm.dto.QuizResult;
 import fr.cesi.qcm.models.Quiz;
-import fr.cesi.qcm.repositories.QuizRepository;
 import fr.cesi.qcm.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -40,11 +40,11 @@ public class QuizController {
         model.addAttribute("quizResult", quizResult);
         model.addAttribute("questions", quiz.getQuestions());
 
-        return "quiz";
+        return "quiz/index";
     }
 
     @GetMapping("/score/{id_quiz}")
-    public String getQuizScores(Model model, @PathVariable final long id_quiz){
+    public String getQuizScore(Model model, @PathVariable final long id_quiz){
 
         Optional<Quiz> quizOptional = quizService.getQuiz(id_quiz);
 
@@ -54,16 +54,6 @@ public class QuizController {
         Quiz quiz = quizOptional.get();
         model.addAttribute("scores", quiz.getScores());
 
-        return "ranking";
-    }
-
-    @GetMapping("/create")
-    public String createQuiz(Model model) {
-        return "quiz-create";
-    }
-
-    @PostMapping("/create")
-    public String saveQuiz() {
-        return "redirect:/";
+        return "quiz/score";
     }
 }
