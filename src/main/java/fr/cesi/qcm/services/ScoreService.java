@@ -6,6 +6,8 @@ import fr.cesi.qcm.repositories.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScoreService {
 
@@ -14,5 +16,9 @@ public class ScoreService {
 
     public Score createScore(Score score) {
         return scoreRepository.save(score);
+    }
+
+    public List<Score> getRanksByQuiz(long id_quiz) {
+        return scoreRepository.findScoresByQuizAndRank(id_quiz);
     }
 }

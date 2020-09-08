@@ -42,18 +42,4 @@ public class QuizController {
 
         return "quiz/index";
     }
-
-    @GetMapping("/score/{id_quiz}")
-    public String getQuizScore(Model model, @PathVariable final long id_quiz){
-
-        Optional<Quiz> quizOptional = quizService.getQuiz(id_quiz);
-
-        if(quizOptional.isEmpty())
-            return "error";
-
-        Quiz quiz = quizOptional.get();
-        model.addAttribute("scores", quiz.getScores());
-
-        return "quiz/score";
-    }
 }

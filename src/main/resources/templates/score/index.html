@@ -9,6 +9,7 @@
             <span th:text="'Votre temps : ' + ${quiz_duration}"></span>
 
             <a th:href="@{/}" class="btn btn-primary">Faire un nouveau quiz</a>
+            <a th:href="@{/score/quiz/${id_quiz}">Voir les scores</a>
         </div>
     </body>
 </html>

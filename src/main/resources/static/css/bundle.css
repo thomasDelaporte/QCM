@@ -31,7 +31,8 @@ a {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 3rem;
+  margin-bottom: 60px;
 }
 
 h2 {
@@ -169,12 +170,14 @@ body {
   color: #fff;
   overflow: hidden;
   border-radius: 5px;
-  writing-mode: vertical-lr;
-  text-orientation: mixed;
 }
 .bar.bar-large {
   width: 40%;
-  writing-mode: initial;
+}
+.bar .bar-logo {
+  font-size: 6rem;
+  letter-spacing: 1rem;
+  font-weight: bolder;
 }
 
 .home-form {
@@ -196,7 +199,48 @@ body {
 .score-wrapper {
   display: flex;
   flex-direction: column;
+}
+.score-wrapper .score-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-column-gap: 30px;
+  grid-template-areas: "r p p" "r s d";
+  border: 1px solid #ebebec;
+  border-radius: 4px;
+  padding: 15px;
+}
+.score-wrapper .score-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+.score-wrapper .score-item.is-top .score-item-rank {
+  background-color: #1f6de5;
+  color: #fff;
+  min-height: 50px;
+  font-weight: 600;
+}
+.score-wrapper .score-item .score-item-rank {
+  grid-area: r;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  min-height: 25px;
+  background-color: #ebebec;
+  color: #000;
+  border-radius: inherit;
+}
+.score-wrapper .score-item .score-item-pseudo {
+  grid-area: p;
+  align-self: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.score-wrapper .score-item .score-item-valid {
+  grid-area: s;
+  align-self: center;
+}
+.score-wrapper .score-item .score-item-duration {
+  grid-area: d;
+  align-self: center;
 }
 
 /*# sourceMappingURL=bundle.css.map */

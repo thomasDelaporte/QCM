@@ -1,13 +1,8 @@
 package fr.cesi.qcm.controllers;
 
 import fr.cesi.qcm.dto.QuizResult;
-import fr.cesi.qcm.models.Answer;
-import fr.cesi.qcm.models.Question;
 import fr.cesi.qcm.models.Quiz;
 import fr.cesi.qcm.models.Score;
-import fr.cesi.qcm.repositories.AnswerRepository;
-import fr.cesi.qcm.repositories.QuizRepository;
-import fr.cesi.qcm.repositories.ScoreRepository;
 import fr.cesi.qcm.services.AnswerService;
 import fr.cesi.qcm.services.QuizService;
 import fr.cesi.qcm.services.ScoreService;
@@ -15,14 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.DateUtils;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("score")
@@ -84,9 +76,19 @@ public class ScoreController {
 
         model.addAttribute("quiz_duration", LocalTime.MIN.plusSeconds(quizDuration).toString());
         model.addAttribute("total_questions", quizResultAnswers.size());
+        model.addAttribute("id_quiz", quiz.get().getId());
 
         model.addAttribute("score", score);
 
-        return "score";
+        return "score/index";
+    }
+
+    @GetMapping("/quiz/{id_quiz}")
+    public String getQuizScore(Model model, @PathVariable final long id_quiz){
+
+        List<Score> scoresList = scoreService.getRanksByQuiz(id_quiz);
+        model.addAttribute("scores", scoresList);
+
+        return "score/quiz";
     }
 }

@@ -10,11 +10,13 @@
     overflow: hidden;
     border-radius: 5px;
 
-    writing-mode: vertical-lr;
-    text-orientation: mixed;
-
     &.bar-large {
         width: 40%;
-        writing-mode: initial;
+    }
+
+    .bar-logo {
+        font-size: 6rem;
+        letter-spacing: 1rem;
+        font-weight: bolder;
     }
 }
