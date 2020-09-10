@@ -6,7 +6,7 @@
         <h1>Classement</h1>
 
         <section class="score-wrapper">
-            <div th:if="${#lists.isEmpty{scores}" class="score-item" th:each="score: ${scores}" th:classappend="${scoreStat.index < 3 ? 'is-top' : null}" >
+            <div class="score-item" th:each="score: ${scores}" th:classappend="${scoreStat.index < 3 ? 'is-top' : null}" >
 
                 <span class="score-item-rank" th:text="${scoreStat.index + 1}"></span>
                 <span class="score-item-pseudo" th:text="${score.getPseudo()}"></span>
@@ -14,7 +14,6 @@
                 <small class="score-item-valid" th:text="'Bonnes réponse(s): ' + ${score.getValidAnswers()}"></small>
                 <small class="score-item-duration" th:text="'Durée: ' + ${score.getDuration()} + 's'"></small>
             </div>
-            <p th:if="${!scores.isEmpty()}">Aucun scores n'a été enregistré</p>
         </section>
     </div>
 </body>
