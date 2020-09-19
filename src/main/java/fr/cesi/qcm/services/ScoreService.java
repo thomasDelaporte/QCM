@@ -14,10 +14,22 @@ public class ScoreService {
     @Autowired
     private ScoreRepository scoreRepository;
 
+    /**
+     * Save an score in database.
+     *
+     * @param score Score object
+     * @return Score updated after saved in database
+     */
     public Score createScore(Score score) {
         return scoreRepository.save(score);
     }
 
+    /**
+     * Get score from an specific quiz.
+     *
+     * @param id_quiz Quiz id
+     * @return Score list
+     */
     public List<Score> getRanksByQuiz(long id_quiz) {
         return scoreRepository.findScoresByQuizAndRank(id_quiz);
     }

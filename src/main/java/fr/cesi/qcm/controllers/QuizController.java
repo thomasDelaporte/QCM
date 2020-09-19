@@ -20,6 +20,16 @@ public class QuizController {
     @Autowired
     QuizService quizService;
 
+    /**
+     * Retrieve the questions about a specific quiz and prepare an fake ModelAttribute object to
+     * be able to retrieve the data properly at the end of the form.
+     *
+     * @param model Model
+     * @param request RequestServlet to retrieve the session
+     * @param pseudo Post data pseudo
+     * @param id_quiz Post data id_quiz
+     * @return Template "quiz/index"
+     */
     @PostMapping
     public String getQuiz(Model model, HttpServletRequest request,
                           @RequestParam("pseudo") String pseudo, @RequestParam("quiz") long id_quiz) {

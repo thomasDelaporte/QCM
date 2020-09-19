@@ -29,6 +29,14 @@ public class ScoreController {
     @Autowired
     private AnswerService answerService;
 
+    /**
+     * Retrieves the data from the quiz form and calculates the user's score and enters it into the database.
+     *
+     * @param model Model
+     * @param quizResult DTO Object to retrieve the data from the form
+     * @param request ServletRequest to retrieve the session
+     * @return Template "score/index"
+     */
     @PostMapping
     public String registerScore(Model model, @ModelAttribute QuizResult quizResult, HttpServletRequest request) {
 
@@ -83,6 +91,13 @@ public class ScoreController {
         return "score/index";
     }
 
+    /**
+     * Displays the ranking for a specific quiz.
+     *
+     * @param model Model
+     * @param id_quiz GET Data id_quiz
+     * @return Template "score/quiz"
+     */
     @GetMapping("/quiz/{id_quiz}")
     public String getQuizScore(Model model, @PathVariable final long id_quiz){
 

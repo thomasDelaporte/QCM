@@ -36,13 +36,4 @@ public class QuizResult {
 	public void setAnswers(Map<Long, Long> answers) {
 		this.answers = answers;
 	}
-
-    @Override
-    public String toString() {
-        return "QuizResult{" +
-                "pseudo='" + pseudo + '\'' +
-                ", id_quiz=" + id_quiz +
-                ", answers=" + answers +
-                '}';
-    }
 }

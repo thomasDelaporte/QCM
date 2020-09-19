@@ -21,6 +21,12 @@ public class HomeController {
     @Autowired
     QuizService quizService;
 
+    /**
+     * Display home page with all the quiz available in the database.
+     *
+     * @param model
+     * @return template "index"
+     */
     @GetMapping
     public String home(Model model) {
 

@@ -15,14 +15,21 @@ public class QuizService {
     @Autowired
     private QuizRepository quizRepository;
 
-    public Quiz saveQuiz(Quiz quiz) {
-        return this.quizRepository.save(quiz);
-    }
-
+    /**
+     * Get quiz by id
+     *
+     * @param id_quiz Id quiz
+     * @return Quiz optional
+     */
     public Optional<Quiz> getQuiz(final long id_quiz) {
         return this.quizRepository.findById(id_quiz);
     }
 
+    /**
+     * Get all quiz.
+     *
+     * @return Quiz list
+     */
     public List<Quiz> getAllQuiz() {
         return this.quizRepository.findAll();
     }
