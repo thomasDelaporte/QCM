@@ -44,11 +44,11 @@ public class Question {
         this.quiz = quiz;
     }
 
-    public Collection<Answer> getAnswers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(Collection<Answer> answers) {
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 }
