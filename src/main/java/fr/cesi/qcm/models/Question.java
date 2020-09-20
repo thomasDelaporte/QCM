@@ -1,9 +1,8 @@
 package fr.cesi.qcm.models;
 
-import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Question {
@@ -19,7 +18,7 @@ public class Question {
     private Quiz quiz;
 
     @OneToMany(mappedBy = "question")
-    private Collection<Answer> answers;
+    private List<Answer> answers;
 
     public Long getId_question() {
         return id_question;

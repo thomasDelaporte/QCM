@@ -25,7 +25,7 @@ public class QuizService {
         return this.quizRepository.findById(id_quiz);
     }
 
-    /**
+    /**L
      * Get all quiz.
      *
      * @return Quiz list
