@@ -59,10 +59,17 @@ body {
   flex-grow: 1;
   padding: 0 10rem;
 }
-.main .container {
-  width: 70%;
-}
 
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+}
+@media (min-width: 768px) {
+  .main .container {
+    width: 70%;
+  }
+}
 .btn {
   padding: 15px 25px;
   display: inline-block;
@@ -180,11 +187,13 @@ body {
   font-weight: bolder;
 }
 
-.home-form {
-  width: 60%;
-  align-self: center;
+@media (max-width: 768px) {
+  .bar {
+    width: 100% !important;
+    padding: 20px 0;
+    margin-bottom: 50px;
+  }
 }
-
 .quiz-answers {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
